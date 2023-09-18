@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+.main{
+    height: 100vh;
+    padding: 1rem;
+    background-color: #1b1e23;
+    color: #fff;
+}
+.main button i{
+    font-size: 50px;
+}
+
+.table img{
+    margin-right: 1rem;
+}
