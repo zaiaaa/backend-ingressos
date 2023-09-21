@@ -16,11 +16,10 @@
     $query = mysqli_query($conn, "SELECT * FROM concerto");
     // $dadosEvento = mysqli_fetch_array($query);
     // var_dump($dadosImagem);
-    $img = [];
+    $id_imagens;
     ?>
     <main class="main"> 
         <h2 align="center">Visualização de eventos</h2>
-
         <hr>
         <a href="inc/incluir.php"><button class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i> Adicionar Evento</button></a>
         <table class="table table-bordered table-dark">
@@ -44,7 +43,8 @@
                 while($dadosEvento=mysqli_fetch_array($query)){ 
                     $id_evento = $dadosEvento['id'];
                     $queryImg = mysqli_query($conn, "SELECT * FROM imagens where id_concerto = $id_evento");
-                    $data_formatada = date("d/m/Y H:i:s", strtotime($dadosEvento['data_show']))
+                    $data_formatada = date("d/m/Y H:i:s", strtotime($dadosEvento['data_show']));
+                    $id_imagens = [];
             ?>
             <tbody>
                 <tr>
@@ -52,10 +52,7 @@
                     <td>
                     <?php while($dadosImg = mysqli_fetch_array($queryImg)){
                         echo '<img width="100px" class="mb-2 mr-2" margin-right="15px" src="'. $dadosImg['caminho'].'">';
-                        $pra = [];
-                        
-                        array_push($img, [$dadosImg['id']]);
-
+                        $id_imagens[] = $dadosImg['id'];
                     }?></td>
                     <td><?php echo $dadosEvento['nome'] ?></td>
                     <td><?php echo $data_formatada?></td>
@@ -66,16 +63,14 @@
                     <td><?php echo $dadosEvento['local_concerto']?></td>
                     <td><?php echo $dadosEvento['limite_ingresso']?></td>
                     <td>
-                    <a href="inc/exclusao.php?id_evento=<?php echo $dadosEvento['id']?>&id_img=<?php echo implode(",", $img);
-                    ?>"><button type="button" class="btn btn-danger mb-2">Excluir</button></a>
+                    <a href="inc/exclusao.php?id_evento=<?php echo $dadosEvento['id']?>&id_img=<?php echo implode(", ", $id_imagens);?>"><button type="button" class="btn btn-danger mb-2">Excluir</button></a>
                         <br>
-                        <button class="btn btn-warning" type="button">Alterar</button>
+                        <a href="inc/alterar.php?id_evento=<?php echo $dadosEvento['id']?>&id_img=<?php echo implode(", ", $id_imagens);?>"><button class="btn btn-warning" type="button">Alterar</button></a>
                     </td>
                 </tr>
             </tbody>
             <?php }?>
         </table>
-        <?php  print_r($img)?>
     </main>
 
 
