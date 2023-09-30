@@ -49,7 +49,7 @@
             <tbody>
                 <tr>
                     <th scope="row"><?php echo $dadosEvento['id']?></th>
-                    <td>
+                    <td align="center">
                     <?php while($dadosImg = mysqli_fetch_array($queryImg)){
                         echo '<img width="100px" class="mb-2 mr-2" margin-right="15px" src="'. $dadosImg['caminho'].'">';
                         $id_imagens[] = $dadosImg['id'];
