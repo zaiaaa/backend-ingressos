@@ -7,6 +7,7 @@ include('./database.php');
     $query = mysqli_query($conn, "SELECT * FROM concerto where id = $id_evento");
     $dados = mysqli_fetch_array($query);
     $dataFormatada = date('Y-m-d\TH:i', strtotime($dados['data_show']));
+
     ?>
 
 <!DOCTYPE html>
@@ -25,14 +26,13 @@ include('./database.php');
 
     <main>
         <div class="form-card">
-            <h2>Alteração de evento</h2>
-            <form action="./alteracao.php?id_evento=<?php echo $dados['id']?>" method="post" enctype="multipart/form-data">
+            <h1 align='center'>Alteração de evento</h1>
+            <form action="./alteracao.php?id_evento=<?php echo $id_evento?>&id_img=<?php echo $id_img?>" method="post" enctype="multipart/form-data">
                 <div class="parentForm">
                     <div class="part-um">
                         <label for="nome">Nome do evento</label><br>
                         <input class="form-control" type="text" name="nome" value="<?php echo $dados['nome'] ?>" required>
                         <br>
-                        <?php echo $dataFormatada. '<br>'. '2023-09-15T12:00' ?>
                         <label for="nome">Data do evento</label><br>
                         <input class="form-control" type="datetime-local" name="data" value="<?php echo $dataFormatada ?>" id="" required>
                         <br>
@@ -42,7 +42,7 @@ include('./database.php');
                         <br>
 
                         <label for="nome">Descrição do evento</label><br>
-                        <textarea class="form-control" name="descricao" id="" cols="30" rows="3"> <?php echo $dados['descricao'] ?> </textarea>
+                        <textarea class="form-control" name="descricao" id="" cols="30" rows="3"><?php echo $dados['descricao'] ?></textarea>
                         <br>
 
                         <label for="nome">Valor do ingresso</label><br>

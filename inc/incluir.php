@@ -20,7 +20,7 @@ include('./database.php');
 
     <main>
         <div class="form-card">
-            <h2>Cadastro de evento</h2>
+            <h1 align="center">Cadastro de evento</h1>
             <form action="./inclusao.php" method="post" enctype="multipart/form-data">
                 <div class="parentForm">
                     <div class="part-um">

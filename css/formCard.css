@@ -10,10 +10,10 @@ main{
 .form-card{
     width: 100%;
     height: 85%;
+    padding: 0 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
 .form-card input{
@@ -31,6 +31,9 @@ main{
 .part-um{
     width: 50%;
     margin-right: 3rem;
+}
+.part-dois{
+    width: 50%;
 }
 
 .botoes{

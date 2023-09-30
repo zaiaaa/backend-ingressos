@@ -10,12 +10,18 @@
     $queryEvento = mysqli_query($conn, "DELETE FROM concerto WHERE id = $id_evento");
 
     for ($i=0; $i < count($id_img_real) ; $i++) { 
+        $querySel = mysqli_query($conn, "SELECT * FROM imagens WHERE id = $id_img_real[$i]");
+        $res = mysqli_fetch_array($querySel);
+        $imagem = $res['caminho'];
+
+        unlink('../'.$imagem);
+
         $query = mysqli_query($conn, "DELETE FROM imagens WHERE id = $id_img_real[$i]");
     }
     if($query && $queryEvento){
-        echo 'Excluido com sucesso!';
+        echo 'Excluido com sucesso! <br> <a href="../index">Voltar à Listagem</a>';
     }else{
-        echo 'deu erro';
+        echo 'deu erro'. $conn->errno;
     }
 
 ?>
